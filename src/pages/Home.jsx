@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import HeroSection from "../components/HeroSection";
-import { getStats } from "../components/movieApI";
-import TopRatedMovies from "../components/TopRatedMovies";
+import HeroSection from "../components/homeComponenets/HeroSection";
+import { getStats } from "../components/homeComponenets/movieApI";
+import TopRatedMovies from "../components/homeComponenets/TopRatedMovies";
+import RecentlyAdded from "../components/homeComponenets/RecentlyAdded";
+import GenreSection from "../components/homeComponenets/GenreSection";
 
 const Home = () => {
 
@@ -26,7 +28,7 @@ const Home = () => {
                 <HeroSection />
 
             </div>
-            <section className="py-16 text-white text-center">
+            <section className="pt-30 pb-20 text-white text-center bg-gradient-to-b from-black via-black/30 to-transparent">
                 <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div className="bg-gray-800 p-8 rounded-2xl shadow-md hover:shadow-lg transition">
                         <h2 className="text-5xl font-extrabold text-[#f97316] mb-3">
@@ -45,6 +47,12 @@ const Home = () => {
             </section>
             <section>
                 <TopRatedMovies></TopRatedMovies>
+            </section>
+            <section>
+                <RecentlyAdded></RecentlyAdded>
+            </section>
+            <section>
+                <GenreSection></GenreSection>
             </section>
         </div>
 
