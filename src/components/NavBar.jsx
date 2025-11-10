@@ -17,13 +17,13 @@ const Navbar = () => {
             <div className="flex items-center gap-2">
                 <Link
                     to={"/auth/login"}
-                    className="px-7 btn border-[#f97316] hover:bg-[#f97316] hover:text-white"
+                    className="md:px-7 btn border-[#f97316] hover:bg-[#f97316] hover:text-white"
                 >
                     Login
                 </Link>
                 <Link
                     to={"/auth/signup"}
-                    className="px-7 btn bg-[#f97316]"
+                    className="md:px-7 btn bg-[#f97316]"
                 >
                     Register
                 </Link>
@@ -34,8 +34,8 @@ const Navbar = () => {
 
     const links = <>
         <NavLink to={"/"} className=" font-bold">Home</NavLink>
-        <NavLink to={"/plants"} className="lg:ml-6  font-bold">Plants</NavLink>
-        <NavLink to={"/myprofile"} className="lg:ml-6 font-bold">My Profile</NavLink>
+        <NavLink to={"/movies"} className="lg:ml-6  font-bold">All Movies</NavLink>
+        <NavLink to={"/my-collection"} className="lg:ml-6 font-bold">My Collection</NavLink>
     </>
     return (
         <nav className="bg-base-100/80 shadow-sm">
@@ -51,7 +51,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <Link to={"/"} className="font-bold text-xl sm:text-2xl ">MovieMaster Pro</Link>
+                    <Link to={"/"} className="font-bold text-xl sm:text-2xl "><span className='text-[#f97316]'>Movie</span>Master Pro </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -60,7 +60,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-end">
-                    <div className='pr-4'>
+                    <div className='pr-5'>
                         <ThemeToggle></ThemeToggle>
                     </div>
                     
