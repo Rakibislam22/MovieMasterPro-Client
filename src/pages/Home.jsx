@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import HeroSection from "../components/HeroSection";
 import { getStats } from "../components/movieApI";
+import TopRatedMovies from "../components/TopRatedMovies";
 
 const Home = () => {
 
@@ -28,7 +29,7 @@ const Home = () => {
             <section className="py-16 text-white text-center">
                 <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div className="bg-gray-800 p-8 rounded-2xl shadow-md hover:shadow-lg transition">
-                        <h2 className="text-5xl font-extrabold text-red-500 mb-3">
+                        <h2 className="text-5xl font-extrabold text-[#f97316] mb-3">
                             {stats.loading ? "..." : stats.movies}
                         </h2>
                         <p className="text-lg opacity-90 font-medium">Total Movies</p>
@@ -41,6 +42,9 @@ const Home = () => {
                         <p className="text-lg opacity-90 font-medium">Total Users</p>
                     </div>
                 </div>
+            </section>
+            <section>
+                <TopRatedMovies></TopRatedMovies>
             </section>
         </div>
 
