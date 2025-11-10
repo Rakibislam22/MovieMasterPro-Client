@@ -1,15 +1,39 @@
 import React from "react";
 import { Film, Sparkles, Users, ShieldCheck } from "lucide-react";
-import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const AboutSection = () => {
     return (
-        <section className="py-16 px-6 md:px-12">
-            <h2 className="border-l-6 border-[#f97316] pl-3 text-4xl md:text-5xl font-bold mb-4">
-                About <span className='text-[#f97316]'>Movie</span>Master Pro
-            </h2>
-            <div className="grid gap-5 lg:grid-cols-2 items-center">
-                <div>
+        <motion.section
+            className="py-16 px-6 md:px-12"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }}
+        >
+            <motion.h2
+                className="border-l-6 border-[#f97316] pl-3 text-4xl md:text-5xl font-bold mb-4"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true, amount: 0.2 }}
+            >
+                About Movie<span className="text-[#f97316]">Master</span> Pro
+            </motion.h2>
+
+            <motion.div
+                className="grid gap-5 lg:grid-cols-2 items-center"
+                initial="hidden"
+                whileInView="visible"
+                transition={{ staggerChildren: 0.15 }}
+                viewport={{ once: true, amount: 0.2 }}
+            >
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    viewport={{ once: true, amount: 0.2 }}
+                >
                     <p className="text-gray-400 max-w-prose leading-relaxed mb-6">
                         MovieMaster Pro is a modern, all-in-one movie management platform
                         designed for cinephiles, critics, and casual viewers alike. Browse
@@ -47,44 +71,55 @@ const AboutSection = () => {
                             </span>
                         </li>
                     </ul>
+                </motion.div>
 
-                </div>
-
-                {/* Right: feature cards */}
-                <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
-                    <div className="bg-gray-900 p-6 rounded-2xl shadow-md hover:translate-y-[-4px] transition-transform">
-                        <h3 className="text-xl font-semibold text-[#f97316] mb-2">Personal Collections</h3>
-                        <p className="text-gray-300 text-sm">
-                            Create private or public collections, add notes, and organize
-                            movies by mood, franchise, or watchlist.
-                        </p>
-                    </div>
-
-                    <div className="bg-gray-900 p-6 rounded-2xl shadow-md hover:translate-y-[-4px] transition-transform">
-                        <h3 className="text-xl font-semibold text-[#f97316] mb-2">Advanced Filters</h3>
-                        <p className="text-gray-300 text-sm">
-                            Filter by genre, year, rating, cast, or custom tags to quickly
-                            find exactly what you want to watch.
-                        </p>
-                    </div>
-
-                    <div className="bg-gray-900 p-6 rounded-2xl shadow-md hover:translate-y-[-4px] transition-transform">
-                        <h3 className="text-xl font-semibold text-[#f97316] mb-2">Top-Rated & Trending</h3>
-                        <p className="text-gray-300 text-sm">
-                            Discover top-rated movies, trending lists, and community favorites.
-                        </p>
-                    </div>
-
-                    <div className="bg-gray-900 p-6 rounded-2xl shadow-md hover:translate-y-[-4px] transition-transform">
-                        <h3 className="text-xl font-semibold text-[#f97316] mb-2">Cross-Platform</h3>
-                        <p className="text-gray-300 text-sm">
-                            Lightweight, fast UI that works great on desktop and mobile — plug
-                            into your backend or use our API.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                {/* Right Side Cards */}
+                <motion.div
+                    className="grid gap-4 grid-cols-1 sm:grid-cols-2"
+                    initial="hidden"
+                    whileInView="visible"
+                    transition={{ staggerChildren: 0.2 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                >
+                    {[
+                        {
+                            title: "Personal Collections",
+                            desc: "Create private or public collections, add notes, and organize movies by mood, franchise, or watchlist.",
+                            delay: 0.1,
+                        },
+                        {
+                            title: "Advanced Filters",
+                            desc: "Filter by genre, year, rating, cast, or custom tags to quickly find exactly what you want to watch.",
+                            delay: 0.2,
+                        },
+                        {
+                            title: "Top-Rated & Trending",
+                            desc: "Discover top-rated movies, trending lists, and community favorites.",
+                            delay: 0.3,
+                        },
+                        {
+                            title: "Cross-Platform",
+                            desc: "Lightweight, fast UI that works great on desktop and mobile — plug into your backend or use our API.",
+                            delay: 0.4,
+                        },
+                    ].map((card, i) => (
+                        <motion.div
+                            key={i}
+                            className="bg-gray-900 p-6 rounded-2xl shadow-md hover:translate-y-[-4px] transition-transform"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: card.delay, ease: "easeOut" }}
+                            viewport={{ once: true, amount: 0.2 }}
+                        >
+                            <h3 className="text-xl font-semibold text-[#f97316] mb-2">
+                                {card.title}
+                            </h3>
+                            <p className="text-gray-300 text-sm">{card.desc}</p>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </motion.div>
+        </motion.section>
     );
 };
 

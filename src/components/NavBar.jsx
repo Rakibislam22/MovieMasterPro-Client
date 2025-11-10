@@ -38,7 +38,7 @@ const Navbar = () => {
         <NavLink to={"/my-collection"} className="lg:ml-6 font-bold">My Collection</NavLink>
     </>
     return (
-        <nav className="bg-base-100/80 shadow-sm">
+        <nav className="bg-base-100/20 shadow-sm">
             <div className='navbar lg:w-11/12 mx-auto '>
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -51,7 +51,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <Link to={"/"} className="font-bold text-xl sm:text-2xl "><span className='text-[#f97316]'>Movie</span>Master Pro </Link>
+                    <Link to={"/"} className="font-bold text-xl sm:text-2xl ">Movie<span className='text-[#f97316]'>Master</span> Pro </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

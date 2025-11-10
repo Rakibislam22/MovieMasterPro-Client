@@ -1,19 +1,35 @@
-import { Star } from 'lucide-react';
-import React from 'react';
-import { Link } from 'react-router';
+import { Star } from "lucide-react";
+import React from "react";
+import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const Movie = ({ movie }) => {
     return (
-        <div
+        <motion.div
             key={movie._id}
-            className="bg-gray-900 rounded-xl overflow-hidden shadow-md hover:scale-[1.03] transition-transform duration-300"
+            className="bg-gray-900 rounded-xl overflow-hidden shadow-md cursor-pointer"
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 25px rgba(249,115,22,0.3)",
+            }}
         >
             {/* Movie Poster */}
-            <img
-                src={movie.posterUrl}
-                alt={movie.title}
-                className="w-full h-64 object-cover"
-            />
+            <motion.div
+                className="relative overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.4 }}
+            >
+                <motion.img
+                    src={movie.posterUrl}
+                    alt={movie.title}
+                    className="w-full h-64 object-cover rounded-t-xl"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                />
+            </motion.div>
 
             {/* Movie Info */}
             <div className="p-4 text-center">
@@ -38,14 +54,16 @@ const Movie = ({ movie }) => {
                 </p>
 
                 {/* Details Button */}
-                <Link
-                    to={`/movie/${movie._id}`}
-                    className="block mt-2 bg-[#f97316] hover:bg-[#bb4f02] text-white text-sm font-semibold py-2 rounded-full transition"
-                >
-                    View Details
-                </Link>
+                <motion.div whileHover={{ scale: 1.05 }}>
+                    <Link
+                        to={`/movie/${movie._id}`}
+                        className="block mt-2 bg-[#f97316] hover:bg-[#bb4f02] text-white text-sm font-semibold py-2 rounded-full transition"
+                    >
+                        View Details
+                    </Link>
+                </motion.div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
