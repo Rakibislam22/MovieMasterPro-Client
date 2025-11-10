@@ -25,7 +25,7 @@ const cardVariants = {
   },
 };
 
-const TopRatedMovies = () => {
+const TopRatedMovies = ({jump}) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -45,6 +45,7 @@ const TopRatedMovies = () => {
 
   return (
     <motion.section
+      id={jump}
       className="py-16 px-6 md:px-12"
       variants={sectionVariants}
       initial="hidden"

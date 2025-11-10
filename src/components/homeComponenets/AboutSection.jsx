@@ -2,9 +2,10 @@ import React from "react";
 import { Film, Sparkles, Users, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 
-const AboutSection = () => {
+const AboutSection = ({ jump }) => {
     return (
         <motion.section
+            id={jump}
             className="py-16 px-6 md:px-12"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

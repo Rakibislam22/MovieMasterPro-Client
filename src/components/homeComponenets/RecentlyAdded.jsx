@@ -3,7 +3,7 @@ import { getRecentlyAddedMovies } from "./movieApI";
 import Movie from "../Movie";
 import { motion } from "framer-motion";
 
-const RecentlyAdded = () => {
+const RecentlyAdded = ({ jump }) => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -23,6 +23,7 @@ const RecentlyAdded = () => {
 
     return (
         <motion.section
+            id={jump}
             className="py-16 px-6 md:px-12"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -14,9 +14,10 @@ const genres = [
   { name: "Animation", icon: <Film className="w-6 h-6 text-orange-400" /> },
 ];
 
-const GenreSection = () => {
+const GenreSection = ({ jump }) => {
   return (
     <motion.section
+      id={jump}
       className="py-16 px-6 md:px-12"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}

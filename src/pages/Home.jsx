@@ -140,7 +140,7 @@ const Home = () => {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 viewport={{ once: true, amount: 0.2 }}
             >
-                <TopRatedMovies></TopRatedMovies>
+                <TopRatedMovies jump="top-rated"></TopRatedMovies>
             </motion.section>
 
             <motion.section
@@ -149,7 +149,7 @@ const Home = () => {
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
                 viewport={{ once: true, amount: 0.2 }}
             >
-                <RecentlyAdded></RecentlyAdded>
+                <RecentlyAdded jump="recent"></RecentlyAdded>
             </motion.section>
 
             <motion.section
@@ -158,7 +158,7 @@ const Home = () => {
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                 viewport={{ once: true, amount: 0.2 }}
             >
-                <GenreSection></GenreSection>
+                <GenreSection jump="genres"></GenreSection>
             </motion.section>
 
             <motion.section
@@ -167,7 +167,7 @@ const Home = () => {
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
                 viewport={{ once: true, amount: 0.2 }}
             >
-                <AboutSection></AboutSection>
+                <AboutSection jump="about"></AboutSection>
             </motion.section>
         </div>
     );

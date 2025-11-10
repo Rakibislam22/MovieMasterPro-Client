@@ -17,13 +17,13 @@ const Navbar = () => {
             <div className="flex items-center gap-2">
                 <Link
                     to={"/auth/login"}
-                    className="md:px-7 btn border-[#f97316] hover:bg-[#f97316] hover:text-white"
+                    className="shadow-none bg-transparent md:px-7 btn border-[#f97316] hover:bg-[#f97316] hover:text-white"
                 >
                     Login
                 </Link>
                 <Link
                     to={"/auth/signup"}
-                    className="md:px-7 btn bg-[#f97316] hover:bg-[#bb4f02] text-white"
+                    className="shadow-none md:px-7 btn border-none bg-[#f97316] hover:bg-[#bb4f02] text-white"
                 >
                     Register
                 </Link>
@@ -38,7 +38,7 @@ const Navbar = () => {
         <NavLink to={"/my-collection"} className="lg:ml-6 font-bold">My Collection</NavLink>
     </>
     return (
-        <nav className="bg-base-100/20 shadow-sm">
+        <nav className="bg-gradient-to-t from-black/30 via-black/20 to-transparent shadow-sm">
             <div className='navbar lg:w-11/12 mx-auto '>
                 <div className="navbar-start">
                     <div className="dropdown">
