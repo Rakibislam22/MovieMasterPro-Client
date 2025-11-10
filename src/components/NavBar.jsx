@@ -23,7 +23,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                     to={"/auth/signup"}
-                    className="md:px-7 btn bg-[#f97316]"
+                    className="md:px-7 btn bg-[#f97316] hover:bg-[#bb4f02] text-white"
                 >
                     Register
                 </Link>

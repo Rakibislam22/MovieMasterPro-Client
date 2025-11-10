@@ -27,3 +27,15 @@ export const getFeaturedMovies = async () => {
     },
   ];
 };
+
+export const getStats = async () => {
+  // Replace this with your real API endpoint later
+  // Example: const res = await fetch("https://api.moviemasterpro.com/stats");
+  // return await res.json();
+
+  // Mocked data (for now)
+  return {
+    movies: 124,
+    users: 586,
+  };
+};

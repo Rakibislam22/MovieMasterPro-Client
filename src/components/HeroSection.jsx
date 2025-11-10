@@ -54,7 +54,7 @@ const HeroSection = () => {
                 <div className="flex flex-wrap gap-4">
                   <Link
                     to={`/movie/${movie._id}`}
-                    className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-semibold transition"
+                    className="bg-[#f97316] hover:bg-[#bb4f02] text-white px-6 py-3 rounded-full font-semibold transition"
                   >
                     🎬 Watch Now
                   </Link>
