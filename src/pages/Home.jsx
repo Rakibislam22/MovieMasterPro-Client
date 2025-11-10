@@ -4,6 +4,7 @@ import { getStats } from "../components/homeComponenets/movieApI";
 import TopRatedMovies from "../components/homeComponenets/TopRatedMovies";
 import RecentlyAdded from "../components/homeComponenets/RecentlyAdded";
 import GenreSection from "../components/homeComponenets/GenreSection";
+import AboutSection from "../components/homeComponenets/AboutSection";
 
 const Home = () => {
 
@@ -53,6 +54,9 @@ const Home = () => {
             </section>
             <section>
                 <GenreSection></GenreSection>
+            </section>
+            <section>
+                <AboutSection></AboutSection>
             </section>
         </div>
 
