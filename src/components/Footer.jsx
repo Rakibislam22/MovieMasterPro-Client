@@ -164,7 +164,7 @@ const Footer = () => {
         transition={{ duration: 1, delay: 0.3 }}
         viewport={{ once: true }}
       >
-        © {new Date().getFullYear()} MovieMaster Pro. All rights reserved.
+        © {new Date().getFullYear()} Movie<span className="text-[#f97316]">Master</span> Pro. All rights reserved.
       </motion.div>
     </motion.footer>
   );
