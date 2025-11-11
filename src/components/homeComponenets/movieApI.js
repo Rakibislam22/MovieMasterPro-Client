@@ -52,6 +52,7 @@ export const getTopRatedMovies = async () => {
             _id: "1",
             title: "The Shawshank Redemption",
             rating: 9.3,
+            releaseYear: 2020,
             posterUrl:
                 "https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
         },
@@ -59,6 +60,7 @@ export const getTopRatedMovies = async () => {
             _id: "2",
             title: "The Godfather",
             rating: 9.2,
+            releaseYear: 2021,
             posterUrl:
                 "https://image.tmdb.org/t/p/original/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
         },
@@ -73,6 +75,7 @@ export const getTopRatedMovies = async () => {
             _id: "4",
             title: "Inception",
             rating: 8.8,
+            releaseYear: 2023,
             posterUrl:
                 "https://image.tmdb.org/t/p/original/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg",
         },

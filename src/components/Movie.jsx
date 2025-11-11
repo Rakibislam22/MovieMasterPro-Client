@@ -33,7 +33,7 @@ const Movie = ({ movie }) => {
 
             {/* Movie Info */}
             <div className="p-4 text-center">
-                <h3 className="text-lg font-semibold truncate mb-2">
+                <h3 className="text-lg text-white font-semibold truncate mb-2">
                     {movie.title}
                 </h3>
 
@@ -46,12 +46,15 @@ const Movie = ({ movie }) => {
                 </div>
 
                 {/* Genre and Year */}
-                <p className="text-gray-400 text-sm">
-                    {movie.genre || "Unknown Genre"}
-                </p>
-                <p className="text-gray-500 text-xs mb-4">
-                    {movie.releaseYear ? `Released: ${movie.releaseYear}` : ""}
-                </p>
+                <div className="flex justify-between items-center gap-5 mb-5">
+                    <p className="text-gray-400 text-sm">
+                        {movie.genre || "Unknown Genre"}
+                    </p>
+                    <p className="text-gray-500 text-sm">
+                        {movie.releaseYear ? `Released: ${movie.releaseYear}` : ""}
+                    </p>
+                </div>
+
 
                 {/* Details Button */}
                 <motion.div whileHover={{ scale: 1.05 }}>

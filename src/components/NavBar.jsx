@@ -1,19 +1,18 @@
-import React, { useContext } from 'react';
+import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import ThemeToggle from './ThemeToggle';
-// import { AuthContext } from '../provider/AuthContext';
-// import Avatar from './Avatar';
+import { AuthContext } from '../provider/AuthContext';
+import Avatar from './Avatar';
 
 const Navbar = () => {
-    // const { user, loading } = useContext(AuthContext);
+    const { user, loading } = use(AuthContext);
 
     const handleLoadingOnNav = () => {
-        // if (loading) {
-        //     return <span className="loading loading-spinner loading-md"></span>
-        // }
-        const user = '';
+        if (loading) {
+            return <span className="loading loading-spinner loading-md"></span>
+        }
 
-        return user ? " " : (
+        return user ? <Avatar></Avatar> : (
             <div className="flex items-center gap-2">
                 <Link
                     to={"/auth/login"}

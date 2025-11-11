@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { use, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthContext';
 import { toast } from 'react-toastify';
@@ -7,7 +7,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Signup = () => {
 
-    const { createUser, setUser, google, forUpdateProfile } = useContext(AuthContext);
+    const { createUser, setUser, google, forUpdateProfile } = use(AuthContext);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
