@@ -32,7 +32,22 @@ const Signup = () => {
 
         createUser(email, password)
             .then((result) => {
-                setUser(result.user);
+                const newUser = result.user;
+                setUser(newUser);
+
+                const userToDatabase = { displayName: newUser.displayName, email: newUser.email, photoUrl: newUser.photoUrl };
+
+                fetch('http://localhost:3000/users', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userToDatabase)
+                }).then(res => res.json())
+                    .then(result => {
+                        console.log(result);
+                    })
+                    .catch((err) => console.error("POST Error:", err));
 
                 forUpdateProfile(name, photo)
                     .then(() => {
@@ -47,8 +62,25 @@ const Signup = () => {
 
     const handleGoogle = () => {
         google().then(result => {
-            setUser(result.user);
+            const newUser = result.user;
+
+            setUser(newUser);
+
+            const userToDatabase = { displayName: newUser.displayName, email: newUser.email, photoURL: newUser.photoURL, };
+
             navigate("/")
+
+            fetch('http://localhost:3000/users', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userToDatabase)
+            }).then(res => res.json())
+                .then(result => {
+                    console.log(result);
+                })
+                .catch((err) => console.error("POST Error:", err));
         }).catch(error => {
             const errorMessage = error.message;
             toast.error(errorMessage);
