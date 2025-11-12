@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import AuthLayout from "./layouts/AuthLayout";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import AllMovies from "./pages/AllMovies";
 
 const Router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>
+      },
+      {
+        path: "/movies",
+        element: <AllMovies></AllMovies>
       },
       {
         path: "/auth",

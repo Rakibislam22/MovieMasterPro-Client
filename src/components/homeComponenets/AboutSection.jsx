@@ -13,7 +13,7 @@ const AboutSection = ({ jump }) => {
             viewport={{ once: true, amount: 0.2 }}
         >
             <motion.h2
-                className="border-l-6 border-[#f97316] pl-3 text-4xl md:text-5xl font-bold mb-4"
+                className="border-l-5 border-[#f97316] pl-3 text-4xl md:text-5xl font-bold mb-4"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}

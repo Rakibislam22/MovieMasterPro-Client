@@ -60,7 +60,7 @@ const TopRatedMovies = ({jump}) => {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <h2 className="border-l-4 border-[#f97316] pl-3 text-4xl md:text-5xl font-bold mb-2">
+        <h2 className="border-l-5 border-[#f97316] pl-3 text-4xl md:text-5xl font-bold mb-2">
           Top Rated Movies
         </h2>
         <p className="text-gray-400">The top 5 movies loved by our users</p>

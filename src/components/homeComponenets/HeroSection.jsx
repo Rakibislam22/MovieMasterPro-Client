@@ -38,7 +38,7 @@ const HeroSection = () => {
             <div
               className="relative w-full h-[90vh] bg-cover bg-center flex items-end"
               style={{
-                backgroundImage: `url(${movie.bannerUrl || movie.posterUrl})`,
+                backgroundImage: `url(${movie.posterUrl})`,
               }}
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
@@ -48,7 +48,7 @@ const HeroSection = () => {
                   {movie.title}
                 </h1>
                 <p className="text-sm md:text-lg mb-6 opacity-90 leading-relaxed">
-                  {movie.description.slice(0, 150)}...
+                  {movie.plotSummary.slice(0, 150)}...
                 </p>
 
                 <div className="flex flex-wrap gap-4">
@@ -56,14 +56,14 @@ const HeroSection = () => {
                     to={`/movie/${movie._id}`}
                     className="bg-[#f97316] hover:bg-[#bb4f02] text-white px-6 py-3 rounded-full font-semibold transition"
                   >
-                    🎬 Watch Now
+                    View Details
                   </Link>
 
                   <Link
                     to={`/favorites`}
                     className="bg-white/20 hover:bg-white/30 border border-white text-white px-6 py-3 rounded-full font-semibold transition"
                   >
-                    ❤️ Add to Favorites
+                     Add to Watchlist
                   </Link>
                 </div>
               </div>

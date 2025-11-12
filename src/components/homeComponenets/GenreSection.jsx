@@ -31,7 +31,7 @@ const GenreSection = ({ jump }) => {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className="border-l-6 border-[#f97316] pl-3 text-4xl md:text-5xl font-bold mb-2">
+        <h2 className="border-l-5 border-[#f97316] pl-3 text-4xl md:text-5xl font-bold mb-2">
           Browse by Genre
         </h2>
         <p className="text-gray-400">Find movies from your favorite categories</p>

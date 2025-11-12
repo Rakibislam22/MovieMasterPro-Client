@@ -37,7 +37,7 @@ const RecentlyAdded = ({ jump }) => {
                 transition={{ duration: 0.7 }}
                 viewport={{ once: true }}
             >
-                <h2 className="border-l-6 border-[#f97316]  text-4xl md:text-5xl font-bold pl-3  mb-2">
+                <h2 className="border-l-5 border-[#f97316]  text-4xl md:text-5xl font-bold pl-3  mb-2">
                     Recently Added
                 </h2>
                 <p className="text-gray-400">Check out the latest movies in the system</p>

@@ -38,7 +38,7 @@ const Navbar = () => {
     </>
     return (
         <nav className="bg-gradient-to-t from-black/30 via-black/20 to-transparent shadow-sm">
-            <div className='navbar lg:w-11/12 mx-auto '>
+            <div className='navbar xl:px-12 mx-auto '>
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" onClick={(e) => e.stopPropagation()} onFocus={(e) => e.stopPropagation()} className="btn btn-ghost lg:hidden">
