@@ -53,3 +53,10 @@ export const addMovie = async (newMovie) => {
     }
 };
 
+export const getLoggedUserMovies = async (email) => {
+    const res = await fetch(`http://localhost:3000/movies?addedBy=${email}`);
+    return await res.json();
+};
+
+
+

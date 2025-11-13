@@ -9,6 +9,7 @@ import AllMovies from "./pages/AllMovies";
 import MovieDetails from "./pages/MoviDetails";
 import PrivateRoute from "./provider/PrivateRoute";
 import AddMovie from "./pages/AddMovie";
+import MyCollection from "./pages/MyCollection";
 
 const Router = createBrowserRouter([
   {
@@ -31,6 +32,12 @@ const Router = createBrowserRouter([
         path: "/movies/add",
         element: <PrivateRoute>
             <AddMovie></AddMovie>
+        </PrivateRoute>
+      },
+      {
+        path: "/movies/my-collection",
+        element: <PrivateRoute>
+            <MyCollection></MyCollection>
         </PrivateRoute>
       },
       {
