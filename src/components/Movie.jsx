@@ -59,7 +59,7 @@ const Movie = ({ movie }) => {
                 {/* Details Button */}
                 <motion.div whileHover={{ scale: 1.05 }}>
                     <Link
-                        to={`/movie/${movie._id}`}
+                        to={`/movies/${movie._id}`}
                         className="block mt-2 bg-[#f97316] hover:bg-[#bb4f02] text-white text-sm font-semibold py-2 rounded-full transition"
                     >
                         View Details

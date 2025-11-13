@@ -22,51 +22,15 @@ export const getStats = async () => {
 
 
 export const getTopRatedMovies = async () => {
-    // Replace with your backend endpoint later:
-    // const res = await fetch("https://yourapi.com/api/top-rated");
-    // return await res.json();
+    const res = await fetch("http://localhost:3000/top-rated-movies");
+    return await res.json();
 
-    // Mock Data for demo:
-    return [
-        {
-            _id: "1",
-            title: "The Shawshank Redemption",
-            rating: 9.3,
-            releaseYear: 2020,
-            posterUrl:
-                "https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
-        },
-        {
-            _id: "2",
-            title: "The Godfather",
-            rating: 9.2,
-            releaseYear: 2021,
-            posterUrl:
-                "https://image.tmdb.org/t/p/original/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
-        },
-        {
-            _id: "3",
-            title: "The Dark Knight",
-            rating: 9.0,
-            posterUrl:
-                "https://image.tmdb.org/t/p/original/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
-        },
-        {
-            _id: "4",
-            title: "Inception",
-            rating: 8.8,
-            releaseYear: 2023,
-            posterUrl:
-                "https://image.tmdb.org/t/p/original/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg",
-        },
-        {
-            _id: "5",
-            title: "Interstellar",
-            rating: 8.6,
-            posterUrl:
-                "https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
-        },
-    ];
+};
+
+export const getMoviesDetails = async (url) => {
+    const res = await fetch(`http://localhost:3000${url}`);
+    return await res.json();
+
 };
 
 export const getRecentlyAddedMovies = async () => {

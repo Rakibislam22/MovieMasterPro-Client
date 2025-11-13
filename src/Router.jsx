@@ -6,6 +6,7 @@ import AuthLayout from "./layouts/AuthLayout";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import AllMovies from "./pages/AllMovies";
+import MovieDetails from "./pages/MoviDetails";
 
 const Router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/movies/:id",
-        element:<
+        element:<MovieDetails></MovieDetails>
       },
       {
         path: "/auth",
