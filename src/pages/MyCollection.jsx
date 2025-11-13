@@ -36,7 +36,7 @@ const MyCollection = () => {
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Delete",
-            cancelButtonText: "Cancel"
+            cancelButtonText: "Cancel",
         });
 
         if (!confirm.isConfirmed) return;
@@ -44,19 +44,22 @@ const MyCollection = () => {
         try {
             await deleteMovie(id);
             Swal.fire("Deleted!", "Movie removed successfully.", "success");
-
-            // Remove from UI instantly
-            setMovies(movies.filter(m => m._id !== id));
+            setMovies(movies.filter((m) => m._id !== id));
         } catch (err) {
             Swal.fire("Error", "Unable to delete movie.", "error");
         }
     };
 
-    if (loading) return <div className="text-center mt-10 text-lg">Loading...</div>;
+    // ⬇️ Beautiful Full-screen Loader
+    if (loading)
+        return (
+            <div className="fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-sm z-50">
+                <div className="h-14 w-14 border-4 border-orange-500 border-t-transparent animate-spin rounded-full"></div>
+            </div>
+        );
 
     return (
         <div className="py-16 md:px-12 mx-auto my-12 px-4">
-
             <h1 className="border-l-5 border-[#f97316] pl-3 text-4xl font-bold mb-4">
                 My Movie Collection
             </h1>
@@ -72,7 +75,7 @@ const MyCollection = () => {
                     <div
                         key={movie._id}
                         className={`rounded-xl shadow-md p-4 transition hover:shadow-lg 
-            ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white"}`}
+                            ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white"}`}
                     >
                         <img
                             src={movie.posterUrl}
@@ -106,9 +109,9 @@ const MyCollection = () => {
                             {/* Edit */}
                             <Link
                                 to={`/movies/update/${movie._id}`}
-                                className="bg-[#f97316] hover:bg-[#bb4f02] text-white px-5 py-2 rounded-3xl "
+                                className="bg-[#f97316] hover:bg-[#bb4f02] text-white px-5 py-2 rounded-3xl"
                             >
-                              ✒️  Edit
+                                ✒️ Edit
                             </Link>
 
                             {/* Delete */}
@@ -116,13 +119,12 @@ const MyCollection = () => {
                                 onClick={() => handleDelete(movie._id)}
                                 className="bg-red-500 text-white px-5 py-2 rounded-3xl hover:bg-red-600"
                             >
-                              🗑️  Delete
+                                🗑️ Delete
                             </button>
                         </div>
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };

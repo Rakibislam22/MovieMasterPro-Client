@@ -9,6 +9,7 @@ import { getFeaturedMovies } from "./movieApI";
 
 const HeroSection = () => {
   const [featuredMovies, setFeaturedMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -17,10 +18,21 @@ const HeroSection = () => {
         setFeaturedMovies(data);
       } catch (error) {
         console.error("Error fetching featured movies:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchMovies();
   }, []);
+
+  // 🔥 Fullscreen Loading UI
+  if (loading) {
+    return (
+      <div className="w-full h-[90vh] flex justify-center items-center bg-black">
+        <div className="h-16 w-16 border-4 border-[#f97316] border-t-transparent animate-spin rounded-full"></div>
+      </div>
+    );
+  }
 
   return (
     <section className="w-full h-[90vh] relative">
@@ -59,12 +71,11 @@ const HeroSection = () => {
                     View Details
                   </Link>
 
-                  <Link
-                    to={`/favorites`}
+                  <button
                     className="bg-white/20 hover:bg-white/30 border border-white text-white px-6 py-3 rounded-full font-semibold transition"
                   >
-                     Add to Watchlist
-                  </Link>
+                    Add to Watchlist
+                  </button>
                 </div>
               </div>
             </div>

@@ -42,8 +42,8 @@ const UpdateMovie = () => {
                     language: data.language,
                     country: data.country,
                     plotSummary: data.plotSummary,
-                    posterUrl:data.posterUrl,
-                    addedBy: data.addedBy
+                    posterUrl: data.posterUrl,
+                    addedBy: data.addedBy,
                 });
             } catch (err) {
                 toast.error("Failed to load movie details!");
@@ -55,7 +55,7 @@ const UpdateMovie = () => {
         loadMovie();
     }, [id]);
 
-    // Input handler
+    // Handle Input
     const handleChange = (e) => {
         if (e.target.name === "addedBy") return;
         setFormData({
@@ -64,7 +64,7 @@ const UpdateMovie = () => {
         });
     };
 
-    // UPDATE MOVIE (PUT inside component!)
+    // Submit Update
     const handleUpdate = async (e) => {
         e.preventDefault();
 
@@ -73,15 +73,13 @@ const UpdateMovie = () => {
             releaseYear: parseInt(formData.releaseYear),
             rating: parseFloat(formData.rating),
             duration: parseInt(formData.duration),
-            addedBy: user.email, // prevent manipulation
+            addedBy: user.email,
         };
 
         try {
             const res = await fetch(`http://localhost:3000/movies/update/${id}`, {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
             });
 
@@ -93,26 +91,30 @@ const UpdateMovie = () => {
 
             toast.success("Movie updated successfully!");
             navigate(`/movies/${id}`);
-
         } catch (err) {
             toast.error("Update failed: " + err.message);
         }
     };
 
-    if (loading)
-        return <div className="text-center mt-10 text-lg">Loading...</div>;
+    // 🔥 CLEAN FULLSCREEN LOADING SCREEN
+    if (loading) {
+        return (
+            <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md z-50">
+                <div className="h-16 w-16 border-4 border-[#f97316] border-t-transparent animate-spin rounded-full"></div>
+            </div>
+        );
+    }
 
     return (
         <div
-            className={`max-w-3xl mx-auto mt-10 p-6 rounded-2xl shadow-lg ${theme === "dark"
-                ? "bg-gray-900 text-gray-200"
-                : "bg-white text-gray-800"
+            className={`my-20 max-w-3xl mx-auto mt-10 p-6 rounded-2xl shadow-lg ${theme === "dark"
+                    ? "bg-gray-900 text-gray-200"
+                    : "bg-white text-gray-800"
                 }`}
         >
             <h1 className="text-3xl font-bold mb-6 text-center">Update Movie</h1>
 
             <form onSubmit={handleUpdate} className="space-y-4">
-
                 {/* Title */}
                 <input
                     type="text"
@@ -235,7 +237,7 @@ const UpdateMovie = () => {
                     placeholder="Plot Summary"
                 />
 
-                {/* ADDED BY (Not Editable) */}
+                {/* ADDED BY */}
                 <input
                     type="text"
                     name="addedBy"
@@ -244,10 +246,9 @@ const UpdateMovie = () => {
                     className="w-full p-3 border rounded-lg bg-gray-200 text-gray-600 cursor-not-allowed"
                 />
 
-                {/* Button */}
                 <button
                     type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg"
+                    className="w-full bg-[#f97316] hover:bg-[#bb4f02] text-white py-3 rounded-lg text-lg"
                 >
                     Save Changes
                 </button>

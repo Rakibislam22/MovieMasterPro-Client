@@ -8,6 +8,8 @@ const AddMovie = () => {
     const { user, theme } = use(AuthContext);
     const navigate = useNavigate();
 
+    const [loading, setLoading] = useState(false);
+
     const [formData, setFormData] = useState({
         title: "",
         genre: "",
@@ -48,22 +50,33 @@ const AddMovie = () => {
         };
 
         try {
+            setLoading(true);  // ⬅️ START LOADING
+
             await addMovie(payload);
             toast.success("Movie added successfully!");
             navigate("/movies");
+
         } catch (err) {
             toast.error("Error adding movie: " + err.message);
+        } finally {
+            setLoading(false);  // ⬅️ STOP LOADING
         }
     };
 
 
     return (
         <div
-            className={`max-w-3xl mx-auto mt-10 mb-30 p-6 rounded-2xl shadow-lg ${theme === "dark"
-                ? "bg-gray-900 text-gray-200"
-                : "bg-white text-gray-800"
-                }`}
+            className={`max-w-3xl mx-auto mt-10 mb-30 p-6 rounded-2xl shadow-lg ${
+                theme === "dark" ? "bg-gray-900 text-gray-200" : "bg-white text-gray-800"
+            }`}
         >
+            {/* Loading Overlay */}
+            {loading && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-orange-500"></div>
+                </div>
+            )}
+
             <h1 className="text-3xl font-bold mb-6 text-center">Add New Movie</h1>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -193,9 +206,12 @@ const AddMovie = () => {
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    className="w-full bg-[#f97316] hover:bg-[#bb4f02] text-white py-3 rounded-lg text-lg"
+                    disabled={loading}
+                    className={`w-full bg-[#f97316] hover:bg-[#bb4f02] text-white py-3 rounded-lg text-lg ${
+                        loading ? "opacity-70 cursor-not-allowed" : ""
+                    }`}
                 >
-                    Add Movie
+                    {loading ? "Adding..." : "Add Movie"}
                 </button>
             </form>
         </div>
