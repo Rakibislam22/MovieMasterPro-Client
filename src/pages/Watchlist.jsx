@@ -14,7 +14,7 @@ const Watchlist = () => {
         const fetchWatchlist = async () => {
             try {
                 const res = await fetch(
-                    `http://localhost:3000/watchlist?email=${user.email}`
+                    `https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/watchlist?email=${user.email}`
                 );
                 const data = await res.json();
                 setWatchlist(data);
@@ -30,11 +30,10 @@ const Watchlist = () => {
 
     return (
         <div
-            className={`min-h-screen px-4 xl:px-12 mx-auto pt-10 pb-20 ${
-                theme === "dark"
+            className={`min-h-screen px-4 xl:px-12 mx-auto pt-10 pb-20 ${theme === "dark"
                     ? "bg-gray-950 text-gray-200"
                     : "bg-gray-100 text-gray-800"
-            }`}
+                }`}
         >
             {/* Hero Section */}
             <motion.div

@@ -37,7 +37,7 @@ const Signup = () => {
 
                 const userToDatabase = { displayName: newUser.displayName, email: newUser.email, photoUrl: newUser.photoUrl };
 
-                fetch('http://localhost:3000/users', {
+                fetch('https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/users', {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const Signup = () => {
 
             navigate("/")
 
-            fetch('http://localhost:3000/users', {
+            fetch('https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/users', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',

@@ -29,7 +29,7 @@ const UpdateMovie = () => {
     useEffect(() => {
         const loadMovie = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/movies/${id}`);
+                const res = await fetch(`https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/movies/${id}`);
                 const data = await res.json();
                 setFormData({
                     title: data.title,
@@ -77,7 +77,7 @@ const UpdateMovie = () => {
         };
 
         try {
-            const res = await fetch(`http://localhost:3000/movies/update/${id}`, {
+            const res = await fetch(`https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/movies/update/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
@@ -108,8 +108,8 @@ const UpdateMovie = () => {
     return (
         <div
             className={`my-20 max-w-3xl mx-auto mt-10 p-6 rounded-2xl shadow-lg ${theme === "dark"
-                    ? "bg-gray-900 text-gray-200"
-                    : "bg-white text-gray-800"
+                ? "bg-gray-900 text-gray-200"
+                : "bg-white text-gray-800"
                 }`}
         >
             <h1 className="text-3xl font-bold mb-6 text-center">Update Movie</h1>
