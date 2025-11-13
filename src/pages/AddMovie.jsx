@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, use } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthContext";
 import { toast } from "react-toastify";
 import { addMovie } from "../components/homeComponenets/movieApI";
 
 const AddMovie = () => {
-    const { user, theme } = useContext(AuthContext);
+    const { user, theme } = use(AuthContext);
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({

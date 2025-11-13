@@ -105,7 +105,7 @@ const MyCollection = () => {
                         <div className="flex justify-between mt-4">
                             {/* Edit */}
                             <Link
-                                to={`/movies/edit/${movie._id}`}
+                                to={`/movies/update/${movie._id}`}
                                 className="bg-[#f97316] hover:bg-[#bb4f02] text-white px-5 py-2 rounded-3xl "
                             >
                               ✒️  Edit

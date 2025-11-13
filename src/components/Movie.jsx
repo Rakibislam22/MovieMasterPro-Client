@@ -43,7 +43,7 @@ const Movie = ({ movie }) => {
                 <div className="flex items-center justify-center gap-1 text-yellow-400 mb-2">
                     <Star className="w-5 h-5 fill-yellow-400" />
                     <span className="text-sm font-bold">
-                        {parseInt(movie.rating)?.toFixed(1)}
+                        {parseFloat(movie.rating)?.toFixed(1)}
                     </span>
                 </div>
 

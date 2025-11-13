@@ -10,6 +10,7 @@ import MovieDetails from "./pages/MoviDetails";
 import PrivateRoute from "./provider/PrivateRoute";
 import AddMovie from "./pages/AddMovie";
 import MyCollection from "./pages/MyCollection";
+import UpdateMovie from "./pages/UpdateMovie";
 
 const Router = createBrowserRouter([
   {
@@ -38,6 +39,12 @@ const Router = createBrowserRouter([
         path: "/movies/my-collection",
         element: <PrivateRoute>
             <MyCollection></MyCollection>
+        </PrivateRoute>
+      },
+      {
+        path: "/movies/update/:id",
+        element: <PrivateRoute>
+            <UpdateMovie></UpdateMovie>
         </PrivateRoute>
       },
       {

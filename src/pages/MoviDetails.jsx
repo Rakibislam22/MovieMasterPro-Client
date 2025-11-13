@@ -52,7 +52,7 @@ const MovieDetails = () => {
 
   // ✏️ Edit movie (redirect to edit page)
   const handleEdit = () => {
-    navigate(`/movies/edit/${id}`);
+    navigate(`/movies/update/${id}`);
   };
 
   if (loading) return <div className="text-center mt-10 text-lg">Loading...</div>;
