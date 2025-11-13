@@ -21,6 +21,10 @@ const Router = createBrowserRouter([
         element: <AllMovies></AllMovies>
       },
       {
+        path: "/movies/:id",
+        element:<
+      },
+      {
         path: "/auth",
         element: <AuthLayout></AuthLayout>,
         children: [

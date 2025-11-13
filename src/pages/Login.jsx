@@ -36,35 +36,26 @@ const Login = () => {
         google().then(result => {
             toast.success('Login successful!');
             setUser(result.user);
-            navigate(`${location.state ? location.state : "/"}`)
+            navigate(`${location.state ? location.state : "/"}`);
+            const newUser = result.user;
+            const userToDatabase = { displayName: newUser.displayName, email: newUser.email, photoURL: newUser.photoURL, };
+
+            fetch('http://localhost:3000/users', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userToDatabase)
+            }).then(res => res.json())
+                .then()
+                .catch((err) => console.error("POST Error:", err));
+
         }).catch(error => {
             const errorMessage = error.message;
             toast.error(errorMessage);
         });
     }
 
-    const handleReset = () => {
-        if (resetMail && resetMail.includes('@')) {
-            sendPasswordResetEmail(auth, resetMail)
-                .then(() => {
-                    toast.success(`A mail sent to ${resetMail}. Please check your Spam box too!`);
-
-                    // Open Gmail after 1 second
-                    setTimeout(() => {
-                        window.open("https://gmail.com/", "_blank");
-                    }, 1500);
-                })
-                .catch((err) => {
-                    toast.error(err.message);
-                });
-        }
-        else if (resetMail.length === 0) {
-            toast.error("Please enter Email first!");
-        }
-        else {
-            toast.error("Invalid Email!");
-        }
-    };
 
 
     return (<div className="flex justify-center items-center min-h-screen bg-gradient-to-l from-black/30 via-transparent to-black/30 ">
@@ -101,7 +92,6 @@ const Login = () => {
 
                 <div className="text-right">
                     <a
-                        onClick={handleReset}
                         className="text-sm text-[#f97316] hover:underline"
                     >
                         Forgot Password?
