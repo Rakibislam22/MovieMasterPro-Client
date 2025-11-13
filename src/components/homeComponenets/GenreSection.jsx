@@ -1,6 +1,7 @@
-import React from "react";
+import React, { use } from "react";
 import { Film, Heart, Laugh, Zap, Sword, Ghost, Atom, Music } from "lucide-react";
 import { motion } from "framer-motion";
+import { AuthContext } from "../../provider/AuthContext";
 
 const genres = [
   { name: "Action", icon: <Zap className="w-6 h-6 text-red-500" /> },
@@ -15,6 +16,7 @@ const genres = [
 ];
 
 const GenreSection = ({ jump }) => {
+  const { theme } = use(AuthContext);
   return (
     <motion.section
       id={jump}
@@ -38,7 +40,7 @@ const GenreSection = ({ jump }) => {
       </motion.div>
 
       <motion.div
-        className="text-white mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center"
+        className={` mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center`}
         initial="hidden"
         whileInView="visible"
         transition={{ staggerChildren: 0.1 }}
@@ -47,7 +49,7 @@ const GenreSection = ({ jump }) => {
         {genres.map((genre, index) => (
           <motion.div
             key={index}
-            className="bg-gray-900 rounded-xl p-6 flex flex-col items-center justify-center shadow-md hover:scale-[1.05] hover:bg-gray-800 transition-transform duration-300"
+            className={`${theme == "dark" ? "bg-gray-900 text-gray-200" : "bg-white text-gray-800"} rounded-xl p-6 flex flex-col items-center justify-center shadow-md hover:scale-[1.05] hover:bg-gray-400 transition-transform duration-300`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}

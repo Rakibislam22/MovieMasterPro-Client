@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { getMoviesDetails } from "../components/homeComponenets/movieApI";
+import { AuthContext } from "../provider/AuthContext";
 
 const MovieDetails = () => {
   const { id } = useParams();
+  const { user, theme } = use(AuthContext);
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -57,7 +59,7 @@ const MovieDetails = () => {
   if (!movie) return <div className="text-center mt-10 text-red-500">Movie not found.</div>;
 
   return (
-    <div className="max-w-4xl mx-auto bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-2xl shadow-lg mt-10">
+    <div className={`my-20 max-w-4xl mx-auto ${theme == "dark" ? "bg-gray-900 text-gray-200" : "bg-white text-gray-800"} p-6 rounded-2xl shadow-lg mt-10`}>
       <div className="flex flex-col md:flex-row gap-6">
         {/* Poster */}
         <img
@@ -80,11 +82,11 @@ const MovieDetails = () => {
           <p><strong>Added By:</strong> {movie.addedBy}</p>
           <div>
             <strong>Plot Summary:</strong>
-            <p className="text-gray-600 dark:text-gray-300 mt-1">{movie.plotSummary}</p>
+            <p className={`${theme == "dark" ? "text-gray-300" : "text-gray-600"}  dark: mt-1`}>{movie.plotSummary}</p>
           </div>
 
           {/* Buttons */}
-          <div className="flex gap-4 mt-5">
+          <div className={`flex gap-4 mt-5 ${user?.email == movie.addedBy ? " " : "hidden"}`}>
             <button
               onClick={handleEdit}
               className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg"
@@ -93,7 +95,7 @@ const MovieDetails = () => {
             </button>
             <button
               onClick={handleDelete}
-              className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg"
+              className="bg-[#f97316] hover:bg-[#bb4f02] text-white px-5 py-2 rounded-lg"
             >
               🗑️ Delete
             </button>

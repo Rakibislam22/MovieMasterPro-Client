@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
+import { AuthContext } from "../provider/AuthContext";
 
 const ThemeToggle = () => {
-  // Load saved theme or default to light
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  
+  const {theme, setTheme} = use(AuthContext);
 
   // Apply theme whenever it changes
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+      useEffect(() => {
+          document.documentElement.setAttribute("data-theme", theme);
+          localStorage.setItem("theme", theme);
+      }, [theme]);
 
   // Toggle between light and dark
   const toggleTheme = () => {

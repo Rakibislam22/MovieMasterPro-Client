@@ -1,8 +1,10 @@
-import React from "react";
+import React, { use } from "react";
 import { Film, Sparkles, Users, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import { AuthContext } from "../../provider/AuthContext";
 
 const AboutSection = ({ jump }) => {
+    const { theme } = use(AuthContext);
     return (
         <motion.section
             id={jump}
@@ -106,7 +108,7 @@ const AboutSection = ({ jump }) => {
                     ].map((card, i) => (
                         <motion.div
                             key={i}
-                            className="bg-gray-900 p-6 rounded-2xl shadow-md hover:translate-y-[-4px] transition-transform"
+                            className={`${theme == "dark" ? "bg-gray-900 text-gray-200" : "bg-white text-gray-900"} p-6 rounded-2xl shadow-md hover:translate-y-[-4px] transition-transform`}
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: card.delay, ease: "easeOut" }}
@@ -115,7 +117,7 @@ const AboutSection = ({ jump }) => {
                             <h3 className="text-xl font-semibold text-[#f97316] mb-2">
                                 {card.title}
                             </h3>
-                            <p className="text-gray-300 text-sm">{card.desc}</p>
+                            <p className="text-sm">{card.desc}</p>
                         </motion.div>
                     ))}
                 </motion.div>

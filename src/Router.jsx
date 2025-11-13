@@ -7,6 +7,8 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import AllMovies from "./pages/AllMovies";
 import MovieDetails from "./pages/MoviDetails";
+import PrivateRoute from "./provider/PrivateRoute";
+import AddMovie from "./pages/AddMovie";
 
 const Router = createBrowserRouter([
   {
@@ -24,6 +26,12 @@ const Router = createBrowserRouter([
       {
         path: "/movies/:id",
         element:<MovieDetails></MovieDetails>
+      },
+      {
+        path: "/movies/add",
+        element: <PrivateRoute>
+            <AddMovie></AddMovie>
+        </PrivateRoute>
       },
       {
         path: "/auth",

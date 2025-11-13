@@ -30,3 +30,26 @@ export const getRecentlyAddedMovies = async () => {
     const res = await fetch("http://localhost:3000/recently-added");
     return await res.json();
 };
+
+export const addMovie = async (newMovie) => {
+    try {
+        const res = await fetch("http://localhost:3000/movies/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newMovie),
+        });
+
+        if (!res.ok) {
+            throw new Error("Failed to add movie");
+        }
+
+        return await res.json();
+
+    } catch (err) {
+        console.error("addMovie error:", err);
+        throw err;
+    }
+};
+

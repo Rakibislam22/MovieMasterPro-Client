@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, use } from "react";
 import HeroSection from "../components/homeComponenets/HeroSection";
 import TopRatedMovies from "../components/homeComponenets/TopRatedMovies";
 import RecentlyAdded from "../components/homeComponenets/RecentlyAdded";
@@ -6,6 +6,7 @@ import GenreSection from "../components/homeComponenets/GenreSection";
 import AboutSection from "../components/homeComponenets/AboutSection";
 import { getStats } from "../components/homeComponenets/movieApI";
 import { motion, useMotionValue, useTransform, useInView, animate } from "framer-motion";
+import { AuthContext } from "../provider/AuthContext";
 
 const Home = () => {
     const [stats, setStats] = useState({ movies: 0, users: 0, loading: true });
@@ -28,6 +29,7 @@ const Home = () => {
     const usersRef = useRef(null);
     const moviesInView = useInView(moviesRef, { once: true, amount: 0.3 });
     const usersInView = useInView(usersRef, { once: true, amount: 0.3 });
+    const { theme } = use(AuthContext);
 
     const moviesValue = useMotionValue(0);
     const usersValue = useMotionValue(0);
@@ -81,7 +83,7 @@ const Home = () => {
                     {/* Movies Counter */}
                     <motion.div
                         ref={moviesRef}
-                        className="bg-gray-800 p-8 rounded-2xl shadow-md hover:shadow-lg transition relative overflow-hidden"
+                        className={`${theme == "dark" ? "bg-gray-800 " : "bg-white "} p-8 rounded-2xl shadow-md hover:shadow-lg transition relative overflow-hidden`}
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0, scale: [1, 1.1, 1] }}
                         transition={{ duration: 0.8, ease: "easeIn", delay: 0.1 }}
@@ -90,7 +92,7 @@ const Home = () => {
                         <h2 className="text-5xl font-extrabold text-[#f97316] mb-3">
                             {stats.loading ? "..." : moviesDisplay}
                         </h2>
-                        <p className="text-lg opacity-90 font-medium">Total Movies</p>
+                        <p className={`text-lg ${theme == "dark" ? " text-gray-200" : " text-gray-800"} opacity-90 font-medium`}>Total Movies</p>
 
                         {/* Small sparkle burst effect */}
                         {moviesInView && !stats.loading && (
@@ -108,7 +110,7 @@ const Home = () => {
                     {/* Users Counter */}
                     <motion.div
                         ref={usersRef}
-                        className="bg-gray-800 p-8 rounded-2xl shadow-md hover:shadow-lg transition relative overflow-hidden"
+                        className={`${theme == "dark" ? "bg-gray-800 " : "bg-white "} p-8 rounded-2xl shadow-md hover:shadow-lg transition relative overflow-hidden`}
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0, scale: [1, 1.1, 1] }}
                         transition={{ duration: 0.8, ease: "easeIn", delay: 0.2 }}
@@ -117,7 +119,7 @@ const Home = () => {
                         <h2 className="text-5xl font-extrabold text-blue-400 mb-3">
                             {stats.loading ? "..." : usersDisplay}
                         </h2>
-                        <p className="text-lg opacity-90 font-medium">Total Users</p>
+                        <p className={`text-lg ${theme == "dark" ? " text-gray-200" : " text-gray-800"} opacity-90 font-medium`}>Total Users</p>
 
                         {usersInView && !stats.loading && (
                             <motion.div

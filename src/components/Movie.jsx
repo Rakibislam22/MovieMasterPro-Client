@@ -1,13 +1,15 @@
 import { Star } from "lucide-react";
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
+import { AuthContext } from "../provider/AuthContext";
 
 const Movie = ({ movie }) => {
+    const { theme } = use(AuthContext);
     return (
         <motion.div
             key={movie._id}
-            className="bg-gray-900 rounded-xl overflow-hidden shadow-md cursor-pointer"
+            className={`${theme == "dark" ? "bg-gray-900 text-gray-200" : "bg-white text-gray-800"} rounded-xl overflow-hidden shadow-md cursor-pointer`}
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -33,7 +35,7 @@ const Movie = ({ movie }) => {
 
             {/* Movie Info */}
             <div className="p-4 text-center">
-                <h3 className="text-lg text-white font-semibold truncate mb-2">
+                <h3 className="text-2xl font-semibold truncate mb-2">
                     {movie.title}
                 </h3>
 
@@ -41,7 +43,7 @@ const Movie = ({ movie }) => {
                 <div className="flex items-center justify-center gap-1 text-yellow-400 mb-2">
                     <Star className="w-5 h-5 fill-yellow-400" />
                     <span className="text-sm font-bold">
-                        {movie.rating?.toFixed(1)}
+                        {parseInt(movie.rating)?.toFixed(1)}
                     </span>
                 </div>
 
