@@ -1,7 +1,7 @@
 import React, { useEffect, useState, use } from "react";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
-import { getLoggedUserMovies } from "../components/homeComponenets/movieApI";
+import { deleteMovie, getLoggedUserMovies } from "../components/homeComponenets/movieApI";
 import { AuthContext } from "../provider/AuthContext";
 import { Star } from "lucide-react";
 
@@ -42,11 +42,11 @@ const MyCollection = () => {
         if (!confirm.isConfirmed) return;
 
         try {
-            //   await axiosInstance.delete(`/movies/${id}`);
-            //   Swal.fire("Deleted!", "Movie removed successfully.", "success");
+            await deleteMovie(id);
+            Swal.fire("Deleted!", "Movie removed successfully.", "success");
 
-            //   // Remove from UI instantly
-            //   setMovies(movies.filter(m => m._id !== id));
+            // Remove from UI instantly
+            setMovies(movies.filter(m => m._id !== id));
         } catch (err) {
             Swal.fire("Error", "Unable to delete movie.", "error");
         }
@@ -57,7 +57,7 @@ const MyCollection = () => {
     return (
         <div className="py-16 md:px-12 mx-auto my-12 px-4">
 
-            <h1 className="border-l-5 border-[#f97316] pl-3 text-4xl font-bold mb-2">
+            <h1 className="border-l-5 border-[#f97316] pl-3 text-4xl font-bold mb-4">
                 My Movie Collection
             </h1>
 
@@ -106,17 +106,17 @@ const MyCollection = () => {
                             {/* Edit */}
                             <Link
                                 to={`/movies/edit/${movie._id}`}
-                                className="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700"
+                                className="bg-[#f97316] hover:bg-[#bb4f02] text-white px-5 py-2 rounded-3xl "
                             >
-                                Edit
+                              ✒️  Edit
                             </Link>
 
                             {/* Delete */}
                             <button
                                 onClick={() => handleDelete(movie._id)}
-                                className="bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600"
+                                className="bg-red-500 text-white px-5 py-2 rounded-3xl hover:bg-red-600"
                             >
-                                Delete
+                              🗑️  Delete
                             </button>
                         </div>
                     </div>

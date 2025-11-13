@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import Swal from "sweetalert2";
-import { getMoviesDetails } from "../components/homeComponenets/movieApI";
+import { deleteMovie, getMoviesDetails } from "../components/homeComponenets/movieApI";
 import { AuthContext } from "../provider/AuthContext";
 
 const MovieDetails = () => {
@@ -39,15 +39,15 @@ const MovieDetails = () => {
       cancelButtonText: "Cancel",
     });
 
-    // if (confirm.isConfirmed) {
-    //   try {
-    //     await axiosInstance.delete(`/movies/${id}`);
-    //     Swal.fire("Deleted!", "The movie has been removed.", "success");
-    //     navigate("/movies");
-    //   } catch (err) {
-    //     Swal.fire("Error!", "Failed to delete the movie.", "error");
-    //   }
-    // }
+    if (confirm.isConfirmed) {
+      try {
+        await deleteMovie(id);
+        Swal.fire("Deleted!", "The movie has been removed.", "success");
+        navigate("/movies");
+      } catch (err) {
+        Swal.fire("Error!", "Failed to delete the movie.", "error");
+      }
+    }
   };
 
   // ✏️ Edit movie (redirect to edit page)
@@ -89,13 +89,13 @@ const MovieDetails = () => {
           <div className={`flex gap-4 mt-5 ${user?.email == movie.addedBy ? " " : "hidden"}`}>
             <button
               onClick={handleEdit}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg"
+              className="bg-[#f97316] hover:bg-[#bb4f02] text-white px-5 py-2 rounded-3xl "
             >
-              ✏️ Edit
+            ✒️ Edit
             </button>
             <button
               onClick={handleDelete}
-              className="bg-[#f97316] hover:bg-[#bb4f02] text-white px-5 py-2 rounded-lg"
+              className="bg-red-500 text-white px-5 py-2 rounded-3xl hover:bg-red-600"
             >
               🗑️ Delete
             </button>

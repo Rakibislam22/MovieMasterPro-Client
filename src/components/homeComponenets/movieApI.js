@@ -58,5 +58,24 @@ export const getLoggedUserMovies = async (email) => {
     return await res.json();
 };
 
+export const deleteMovie = async (id) => {
+    try {
+        const res = await fetch(`http://localhost:3000/movies/${id}`, {
+            method: "DELETE",
+        });
+
+        if (!res.ok) {
+            throw new Error("Failed to delete movie");
+        }
+
+        return await res.json();
+
+    } catch (err) {
+        console.error("deleteMovie error:", err);
+        throw err;
+    }
+};
+
+
 
 
