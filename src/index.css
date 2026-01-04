@@ -4,3 +4,12 @@
 html {
   scroll-behavior: smooth;
 }
+
+nav a.active {
+  color: #f97316;
+  border-bottom: solid 1px #f97316;
+}
+
+nav a:hover {
+  color: #f97316;
+}

@@ -1,5 +1,5 @@
 export const getMovies = async (query = "") => {
-    const res = await fetch(`https://movie-master-pro1234.vercel.app/movies${query}`);
+    const res = await fetch(`http://localhost:3000/movies${query}`);
     if (!res.ok) throw new Error("Failed to fetch movies");
     return res.json();
 };
