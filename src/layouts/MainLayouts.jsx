@@ -6,8 +6,11 @@ import { ToastContainer } from 'react-toastify';
 
 const MainLayouts = () => {
     return (
-        <div>
-            <NavBar></NavBar>
+        <div className='relative'>
+            <div className='sticky top-0 z-999 backdrop-blur-sm'>
+                <NavBar></NavBar>
+            </div>
+            
             <Outlet></Outlet>
             <Footer></Footer>
             <ToastContainer />

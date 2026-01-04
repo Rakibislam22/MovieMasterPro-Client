@@ -20,7 +20,7 @@ const Movie = ({ movie }) => {
         };
 
         try {
-            const res = await fetch("https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/watchlist/add", {
+            const res = await fetch("https://movie-master-pro1234.vercel.app/watchlist/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
@@ -43,7 +43,7 @@ const Movie = ({ movie }) => {
         if (!user?.email) return toast.error("Login required");
 
         try {
-            const res = await fetch("https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/watchlist/remove", {
+            const res = await fetch("https://movie-master-pro1234.vercel.app/watchlist/remove", {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

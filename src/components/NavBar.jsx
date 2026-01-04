@@ -5,7 +5,7 @@ import { AuthContext } from '../provider/AuthContext';
 import Avatar from './Avatar';
 
 const Navbar = () => {
-    const { user, loading } = use(AuthContext);
+    const { user, loading, theme } = use(AuthContext);
 
     const handleLoadingOnNav = () => {
         if (loading) {
@@ -39,7 +39,7 @@ const Navbar = () => {
         <NavLink to={"/movies/watchlist"} className="lg:ml-6 font-bold">My Watchlist</NavLink>
     </>
     return (
-        <nav className="bg-gradient-to-t from-black/30 via-black/20 to-transparent shadow-sm">
+        <nav className={` ${ theme === "dark" ? "bg-gradient-to-t from-black/30 via-black/20 to-transparent" : "bg-white/40"}  shadow-sm`}>
             <div className='navbar xl:px-12 mx-auto '>
                 <div className="navbar-start">
                     <div className="dropdown">

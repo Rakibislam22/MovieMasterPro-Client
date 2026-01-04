@@ -1,42 +1,42 @@
 export const getMovies = async (query = "") => {
-    const res = await fetch(`https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/movies${query}`);
+    const res = await fetch(`https://movie-master-pro1234.vercel.app/movies${query}`);
     if (!res.ok) throw new Error("Failed to fetch movies");
     return res.json();
 };
 
 export const getFeaturedMovies = async () => {
-    const res = await fetch('https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/hero-movies');
+    const res = await fetch('https://movie-master-pro1234.vercel.app/hero-movies');
     if (!res.ok) throw new Error("Failed to fetch featured movies");
     return res.json();
 };
 
 export const getStats = async () => {
-    const res = await fetch("https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/stats");
+    const res = await fetch("https://movie-master-pro1234.vercel.app/stats");
     if (!res.ok) throw new Error("Failed to fetch stats");
     return res.json();
 };
 
 export const getTopRatedMovies = async () => {
-    const res = await fetch("https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/top-rated-movies");
+    const res = await fetch("https://movie-master-pro1234.vercel.app/top-rated-movies");
     if (!res.ok) throw new Error("Failed to fetch top rated movies");
     return res.json();
 };
 
 export const getMoviesDetails = async (url) => {
-    const res = await fetch(`https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app${url}`);
+    const res = await fetch(`https://movie-master-pro1234.vercel.app${url}`);
     if (!res.ok) throw new Error("Failed to fetch movie details");
     return res.json();
 };
 
 export const getRecentlyAddedMovies = async () => {
-    const res = await fetch("https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/recently-added");
+    const res = await fetch("https://movie-master-pro1234.vercel.app/recently-added");
     if (!res.ok) throw new Error("Failed to fetch recently added movies");
     return res.json();
 };
 
 export const addMovie = async (newMovie) => {
     try {
-        const res = await fetch("https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/movies/add", {
+        const res = await fetch("https://movie-master-pro1234.vercel.app/movies/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newMovie),
@@ -53,14 +53,14 @@ export const addMovie = async (newMovie) => {
 };
 
 export const getLoggedUserMovies = async (email) => {
-    const res = await fetch(`https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/movies?addedBy=${email}`);
+    const res = await fetch(`https://movie-master-pro1234.vercel.app/movies?addedBy=${email}`);
     if (!res.ok) throw new Error("Failed to load user movies");
     return res.json();
 };
 
 export const deleteMovie = async (id) => {
     try {
-        const res = await fetch(`https://movie-master-pro1234-191589w3p-md-rakib-alis-projects.vercel.app/movies/${id}`, {
+        const res = await fetch(`https://movie-master-pro1234.vercel.app/movies/${id}`, {
             method: "DELETE",
         });
 

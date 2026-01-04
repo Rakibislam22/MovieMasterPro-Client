@@ -35,7 +35,7 @@ const HeroSection = () => {
   }
 
   return (
-    <section className="w-full h-[90vh] relative">
+    <section className="w-full h-[70vh] relative mx-auto">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -48,7 +48,7 @@ const HeroSection = () => {
         {featuredMovies.map((movie) => (
           <SwiperSlide key={movie._id}>
             <div
-              className="relative w-full h-[90vh] bg-cover bg-center flex items-end"
+              className="relative w-full h-[70vh] bg-cover bg-center flex items-end"
               style={{
                 backgroundImage: `url(${movie.posterUrl})`,
               }}
