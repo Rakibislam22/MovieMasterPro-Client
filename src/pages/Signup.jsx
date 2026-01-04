@@ -32,6 +32,7 @@ const Signup = () => {
 
         createUser(email, password)
             .then((result) => {
+                toast.success("Register Successful!")
                 const newUser = result.user;
                 setUser(newUser);
 

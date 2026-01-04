@@ -13,7 +13,7 @@ const MainLayouts = () => {
             
             <Outlet></Outlet>
             <Footer></Footer>
-            <ToastContainer />
+            <ToastContainer autoClose={2000} theme="colored" />
         </div>
     );
 };

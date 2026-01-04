@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { AuthContext } from "../provider/AuthContext";
 import { toast } from "react-toastify";
 
-const Movie = ({ movie }) => {
+const Movie = ({ movie, handleRemoveFromUI }) => {
     const { theme, user } = useContext(AuthContext);
     const location = useLocation();
-    const isWatchlistPage = location.pathname === "/movies/watchlist";
+    const isWatchlistPage = location.pathname === "/dashboard/movies/watchlist";
 
     // ADD TO WATCHLIST
     const handleAddWatchlist = async () => {
@@ -56,8 +56,7 @@ const Movie = ({ movie }) => {
 
             if (data.success) {
                 toast.success("Removed from Watchlist!");
-                // Auto remove from UI (optional)
-                window.location.reload();
+                handleRemoveFromUI(movie._id);
             } else {
                 toast.error("Failed to remove");
             }

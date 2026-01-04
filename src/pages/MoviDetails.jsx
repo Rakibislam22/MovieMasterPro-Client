@@ -47,7 +47,7 @@ const MovieDetails = () => {
   };
 
   const handleEdit = () => {
-    navigate(`/movies/update/${id}`);
+    navigate(`/dashboard/movies/update/${id}`);
   };
 
   if (loading)

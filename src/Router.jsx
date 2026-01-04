@@ -14,6 +14,9 @@ import UpdateMovie from "./pages/UpdateMovie";
 import Watchlist from "./pages/Watchlist";
 import ErrorPage from "./components/ErrorPage";
 import DashboardPage from "./pages/DashBoardPage";
+import PrivacyTerms from "./pages/PrivacyTerms";
+import Contact from "./pages/Contact";
+import MyProfile from "./pages/MyProfile";
 
 const Router = createBrowserRouter([
   {
@@ -33,10 +36,16 @@ const Router = createBrowserRouter([
         element: <MovieDetails></MovieDetails>
       },
       {
-        path: "/movies/update/:id",
-        element: <PrivateRoute>
-          <UpdateMovie></UpdateMovie>
-        </PrivateRoute>
+        path:"/privacy",
+        element: <PrivacyTerms></PrivacyTerms>
+      },
+      {
+        path:"/contact",
+        element: <Contact></Contact>
+      },
+      {
+        path: "/my-profile",
+        element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
       },
       {
         path: "/auth",
@@ -52,26 +61,24 @@ const Router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardPage></DashboardPage>,
+    element: <PrivateRoute><DashboardPage></DashboardPage></PrivateRoute> ,
     children: [
       {
         path: "/dashboard/movies/add",
-        element: <PrivateRoute>
-          <AddMovie></AddMovie>
-        </PrivateRoute>
+        element: <AddMovie></AddMovie>
+      },
+      {
+        path: "/dashboard/movies/update/:id",
+        element: <UpdateMovie></UpdateMovie>
       },
       {
         path: "/dashboard/movies/my-collection",
-        element: <PrivateRoute>
-          <MyCollection></MyCollection>
-        </PrivateRoute>
+        element:<MyCollection></MyCollection>
       },
 
       {
         path: "/dashboard/movies/watchlist",
-        element: <PrivateRoute>
-          <Watchlist></Watchlist>
-        </PrivateRoute>
+        element: <Watchlist></Watchlist>
       }
     ],
     errorElement: <ErrorPage></ErrorPage>

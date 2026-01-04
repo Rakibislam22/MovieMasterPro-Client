@@ -1,24 +1,40 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router';
-import { FaFilm, FaHeart, FaPlus, FaUserShield, FaUser } from "react-icons/fa";
+import { FaFilm, FaHeart, FaPlus, FaUserShield } from "react-icons/fa";
 import Footer from '../components/Footer';
 import { ToastContainer } from 'react-toastify';
 
 const DashboardPage = () => {
-    const  role  = "user";
+    const role = "Admin";
 
     return (
-        <div className='mx-auto'>
-            <div className="drawer lg:drawer-open pb-10 min-h-[80vh]">
-                <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
+        <div className="mx-auto">
+            <div className="drawer lg:drawer-open">
+                <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
 
-                {/* Main content */}
                 <div className="drawer-content">
-                    <nav className="navbar bg-base-300">
-                        <label htmlFor="dashboard-drawer" className="btn btn-square btn-ghost">
-                            ☰
+                    <nav className="navbar w-full bg-base-300">
+                        <label
+                            htmlFor="my-drawer-4"
+                            aria-label="open sidebar"
+                            className="btn btn-square btn-ghost"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                strokeLinejoin="round"
+                                strokeLinecap="round"
+                                strokeWidth="2"
+                                fill="none"
+                                stroke="currentColor"
+                                className="my-1.5 inline-block size-4"
+                            >
+                                <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                                <path d="M9 4v16"></path>
+                                <path d="M14 10l2 2l-2 2"></path>
+                            </svg>
                         </label>
-                        <span className="px-4 font-semibold">MovieMaster Dashboard</span>
+                        <div className="px-4">MovieMaster Dashboard</div>
                     </nav>
 
                     <div className="p-4">
@@ -26,66 +42,77 @@ const DashboardPage = () => {
                     </div>
                 </div>
 
-                {/* Sidebar */}
-                <div className="drawer-side">
-                    <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-64 min-h-full bg-base-200">
+                <div className="drawer-side is-drawer-close:overflow-visible">
+                    <label
+                        htmlFor="my-drawer-4"
+                        aria-label="close sidebar"
+                        className="drawer-overlay"
+                    ></label>
 
-                        <li>
-                            <Link to="/">
-                                🎬 Home
-                            </Link>
-                        </li>
+                    <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+                        <ul className="menu w-full grow">
+                            <li>
+                                <Link
+                                    to="/"
+                                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                    data-tip="Home"
+                                >
+                                    <span className="text-lg">🎬</span>
+                                    <span className="is-drawer-close:hidden">Home</span>
+                                </Link>
+                            </li>
 
-                        <li className="menu-title">
-                            <span>User</span>
-                        </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/movies/watchlist"
+                                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                    data-tip="Watchlist"
+                                >
+                                    <FaHeart className="my-1.5 inline-block size-4" />
+                                    <span className="is-drawer-close:hidden">Watchlist</span>
+                                </Link>
+                            </li>
 
-                        <li>
-                            <Link to="/movies/watchlist">
-                                <FaHeart /> Watchlist
-                            </Link>
-                        </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/movies/my-collection"
+                                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                    data-tip="My Collection"
+                                >
+                                    <FaFilm className="my-1.5 inline-block size-4" />
+                                    <span className="is-drawer-close:hidden">My Collection</span>
+                                </Link>
+                            </li>
 
-                        <li>
-                            <Link to="/movies/my-collection">
-                                <FaFilm /> My Collection
-                            </Link>
-                        </li>
+                            {role === "Admin" && (
+                                <>
+                                    <li>
+                                        <Link
+                                            to="/dashboard/movies/add"
+                                            className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                                            data-tip="Add Movie"
+                                        >
+                                            <FaPlus className="my-1.5 inline-block size-4" />
+                                            <span className="is-drawer-close:hidden">Add Movie</span>
+                                        </Link>
+                                    </li>
 
-                        {role === "Admin" && (
-                            <>
-                                <li className="menu-title">
-                                    <span>Admin</span>
-                                </li>
+                                    <li>
+                                        <span className="is-drawer-close:hidden flex items-center gap-2 text-xs text-gray-400">
+                                            <FaUserShield /> Admin Access
+                                        </span>
+                                    </li>
+                                </>
+                            )}
 
-                                <li>
-                                    <Link to="/movies/add">
-                                        <FaPlus /> Add Movie
-                                    </Link>
-                                </li>
-
-                                <li>
-                                    <span className="text-xs text-gray-400 flex items-center gap-2">
-                                        <FaUserShield /> Admin Access
-                                    </span>
-                                </li>
-                            </>
-                        )}
-
-                        <li className="mt-4">
-                            <Link to="/dashboard/profile">
-                                <FaUser /> Profile
-                            </Link>
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <Footer />
 
             <ToastContainer
-                position="top-center"
                 autoClose={2000}
                 theme="colored"
             />

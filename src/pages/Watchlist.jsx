@@ -9,6 +9,8 @@ const Watchlist = () => {
     const [watchlist, setWatchlist] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    
+
     // Fetch watchlist movies
     useEffect(() => {
         const fetchWatchlist = async () => {
@@ -27,6 +29,10 @@ const Watchlist = () => {
 
         fetchWatchlist();
     }, [user.email]);
+    
+    const handleRemoveFromUI = (id) => {
+        setWatchlist(prev => prev.filter(movie => movie._id !== id));
+    };
 
     return (
         <div
@@ -104,7 +110,7 @@ const Watchlist = () => {
                                 show: { opacity: 1, scale: 1 },
                             }}
                         >
-                            <Movie movie={movie} />
+                            <Movie movie={movie} handleRemoveFromUI={handleRemoveFromUI} />
                         </motion.div>
                     ))}
                 </motion.div>

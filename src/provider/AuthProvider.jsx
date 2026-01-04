@@ -24,6 +24,10 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
 
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -54,7 +58,7 @@ const AuthProvider = ({ children }) => {
         forUpdateProfile,
         loading,
         setLoading,
-        theme, 
+        theme,
         setTheme
     };
 

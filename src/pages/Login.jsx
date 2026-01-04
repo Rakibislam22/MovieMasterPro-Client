@@ -22,6 +22,7 @@ const Login = () => {
 
 
         userLogin(email, password).then(result => {
+            toast.success('Login successful!');
             setUser(result.user);
             navigate(`${location.state ? location.state : "/"}`)
         }).catch(error => {
@@ -68,6 +69,7 @@ const Login = () => {
                     <label className="block text-gray-700 mb-1">Email</label>
                     <input
                         type="email" name='email'
+                        defaultValue="demo@gmail.com"
                         placeholder="Enter your email"
                         onChange={(e) => setResetMail(e.target.value)}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
@@ -79,6 +81,7 @@ const Login = () => {
                     <label className="block text-gray-700 mb-1">Password</label>
                     <input
                         type={eye ? "text" : "password"} name='password'
+                        defaultValue="Demo1234"
                         placeholder="Enter your password"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                         required

@@ -10,6 +10,6 @@ nav a.active {
   border-bottom: solid 1px #f97316;
 }
 
-nav a:hover {
+nav ul a:hover {
   color: #f97316;
 }

@@ -5,12 +5,30 @@ import { deleteMovie, getLoggedUserMovies } from "../components/homeComponenets/
 import { AuthContext } from "../provider/AuthContext";
 import { Star } from "lucide-react";
 
+const MovieSkeleton = ({ theme }) => (
+    <div
+        className={`rounded-xl shadow-md p-4 animate-pulse
+        ${theme === "dark" ? "bg-gray-800" : "bg-white"}`}
+    >
+        <div className="w-full h-64 bg-gray-300 dark:bg-gray-700 rounded-lg" />
+        <div className="h-6 w-3/4 bg-gray-300 dark:bg-gray-700 rounded my-4 mx-auto" />
+        <div className="h-4 w-1/3 bg-gray-300 dark:bg-gray-700 rounded mx-auto mb-3" />
+        <div className="flex justify-between mb-5">
+            <div className="h-4 w-1/3 bg-gray-300 dark:bg-gray-700 rounded" />
+            <div className="h-4 w-1/3 bg-gray-300 dark:bg-gray-700 rounded" />
+        </div>
+        <div className="flex justify-between">
+            <div className="h-10 w-24 bg-gray-300 dark:bg-gray-700 rounded-3xl" />
+            <div className="h-10 w-24 bg-gray-300 dark:bg-gray-700 rounded-3xl" />
+        </div>
+    </div>
+);
+
 const MyCollection = () => {
     const { user, theme } = use(AuthContext);
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Fetch only user's movies
     useEffect(() => {
         if (!user?.email) return;
 
@@ -28,7 +46,6 @@ const MyCollection = () => {
         fetchMovies();
     }, [user]);
 
-    // Delete Movie
     const handleDelete = async (id) => {
         const confirm = await Swal.fire({
             title: "Delete this movie?",
@@ -50,81 +67,75 @@ const MyCollection = () => {
         }
     };
 
-    // ⬇️ Beautiful Full-screen Loader
-    if (loading)
-        return (
-            <div className="fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-sm z-50">
-                <div className="h-14 w-14 border-4 border-orange-500 border-t-transparent animate-spin rounded-full"></div>
-            </div>
-        );
-
     return (
-        <div className="py-16 md:px-12 mx-auto my-12 px-4">
-            <h1 className="border-l-5 border-[#f97316] pl-3 text-4xl font-bold mb-4">
-                My Movie Collection
+        <div className="pt-10">
+            <h1 className="text-center text-5xl font-bold mb-2">
+                My Movie <span className="text-[#f97316]">Collection</span>
             </h1>
 
-            {movies.length === 0 && (
+            {loading ? (
+                <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
+                    {[...Array(6)].map((_, i) => (
+                        <MovieSkeleton key={i} theme={theme} />
+                    ))}
+                </div>
+            ) : movies.length === 0 ? (
                 <p className="text-center text-4xl min-h-[450px] text-gray-500 mt-10">
                     You haven't added any movies yet.
                 </p>
-            )}
-
-            <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-                {movies.map((movie) => (
-                    <div
-                        key={movie._id}
-                        className={`rounded-xl shadow-md p-4 transition hover:shadow-lg 
+            ) : (
+                <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
+                    {movies.map((movie) => (
+                        <div
+                            key={movie._id}
+                            className={`rounded-xl shadow-md p-4 transition hover:shadow-lg 
                             ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white"}`}
-                    >
-                        <img
-                            src={movie.posterUrl}
-                            alt={movie.title}
-                            className="w-full h-64 object-cover rounded-lg"
-                        />
+                        >
+                            <img
+                                src={movie.posterUrl}
+                                alt={movie.title}
+                                className="w-full h-64 object-cover rounded-lg"
+                            />
 
-                        <h3 className="text-2xl font-semibold truncate my-2 text-center">
-                            {movie.title}
-                        </h3>
+                            <h3 className="text-2xl font-semibold truncate my-2 text-center">
+                                {movie.title}
+                            </h3>
 
-                        {/* Rating */}
-                        <div className="flex items-center justify-center gap-1 text-yellow-400 mb-2">
-                            <Star className="w-5 h-5 fill-yellow-400" />
-                            <span className="text-sm font-bold">
-                                {parseInt(movie.rating)?.toFixed(1)}
-                            </span>
+                            <div className="flex items-center justify-center gap-1 text-yellow-400 mb-2">
+                                <Star className="w-5 h-5 fill-yellow-400" />
+                                <span className="text-sm font-bold">
+                                    {parseInt(movie.rating)?.toFixed(1)}
+                                </span>
+                            </div>
+
+                            <div className="flex justify-between items-center gap-5 mb-5">
+                                <p className="text-gray-400 text-sm">
+                                    {movie.genre || "Unknown Genre"}
+                                </p>
+                                <p className="text-gray-500 text-sm">
+                                    {movie.releaseYear ? `Released: ${movie.releaseYear}` : ""}
+                                </p>
+                            </div>
+
+                            <div className="flex justify-between mt-4">
+                                <Link
+                                    to={`/dashboard/movies/update/${movie._id}`}
+                                    className="bg-[#f97316] hover:bg-[#bb4f02] text-white px-5 py-2 rounded-3xl"
+                                >
+                                    ✒️ Edit
+                                </Link>
+
+                                <button
+                                    onClick={() => handleDelete(movie._id)}
+                                    className="bg-red-500 text-white px-5 py-2 rounded-3xl hover:bg-red-600"
+                                >
+                                    🗑️ Delete
+                                </button>
+                            </div>
                         </div>
-
-                        {/* Genre and Year */}
-                        <div className="flex justify-between items-center gap-5 mb-5">
-                            <p className="text-gray-400 text-sm">
-                                {movie.genre || "Unknown Genre"}
-                            </p>
-                            <p className="text-gray-500 text-sm">
-                                {movie.releaseYear ? `Released: ${movie.releaseYear}` : ""}
-                            </p>
-                        </div>
-
-                        <div className="flex justify-between mt-4">
-                            {/* Edit */}
-                            <Link
-                                to={`/movies/update/${movie._id}`}
-                                className="bg-[#f97316] hover:bg-[#bb4f02] text-white px-5 py-2 rounded-3xl"
-                            >
-                                ✒️ Edit
-                            </Link>
-
-                            {/* Delete */}
-                            <button
-                                onClick={() => handleDelete(movie._id)}
-                                className="bg-red-500 text-white px-5 py-2 rounded-3xl hover:bg-red-600"
-                            >
-                                🗑️ Delete
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

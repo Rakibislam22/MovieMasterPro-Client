@@ -34,6 +34,8 @@ const Navbar = () => {
     const links = <>
         <NavLink to={"/"} className=" font-bold">Home</NavLink>
         <NavLink to={"/movies"} className="lg:ml-6  font-bold">All Movies</NavLink>
+        <NavLink to={"/privacy"} className="lg:ml-6  font-bold">Privacy</NavLink>
+        <NavLink to={"/contact"} className="lg:ml-6  font-bold">Contact</NavLink>
         
     </>
     return (
