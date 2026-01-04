@@ -34,9 +34,7 @@ const Navbar = () => {
     const links = <>
         <NavLink to={"/"} className=" font-bold">Home</NavLink>
         <NavLink to={"/movies"} className="lg:ml-6  font-bold">All Movies</NavLink>
-        <NavLink to={"/movies/add"} className="lg:ml-6 font-bold">Add Movie</NavLink>
-        <NavLink to={"/movies/my-collection"} className="lg:ml-6 font-bold">My Collection</NavLink>
-        <NavLink to={"/movies/watchlist"} className="lg:ml-6 font-bold">My Watchlist</NavLink>
+        
     </>
     return (
         <nav className={` ${ theme === "dark" ? "bg-gradient-to-t from-black/30 via-black/20 to-transparent" : "bg-white/40"}  shadow-sm`}>

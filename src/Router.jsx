@@ -13,6 +13,7 @@ import MyCollection from "./pages/MyCollection";
 import UpdateMovie from "./pages/UpdateMovie";
 import Watchlist from "./pages/Watchlist";
 import ErrorPage from "./components/ErrorPage";
+import DashboardPage from "./pages/DashBoardPage";
 
 const Router = createBrowserRouter([
   {
@@ -32,27 +33,9 @@ const Router = createBrowserRouter([
         element: <MovieDetails></MovieDetails>
       },
       {
-        path: "/movies/add",
-        element: <PrivateRoute>
-          <AddMovie></AddMovie>
-        </PrivateRoute>
-      },
-      {
-        path: "/movies/my-collection",
-        element: <PrivateRoute>
-          <MyCollection></MyCollection>
-        </PrivateRoute>
-      },
-      {
         path: "/movies/update/:id",
         element: <PrivateRoute>
           <UpdateMovie></UpdateMovie>
-        </PrivateRoute>
-      },
-      {
-        path: "/movies/watchlist",
-        element: <PrivateRoute>
-          <Watchlist></Watchlist>
         </PrivateRoute>
       },
       {
@@ -67,6 +50,33 @@ const Router = createBrowserRouter([
     ],
     errorElement: <ErrorPage></ErrorPage>
   },
+  {
+    path: "/dashboard",
+    element: <DashboardPage></DashboardPage>,
+    children: [
+      {
+        path: "/dashboard/movies/add",
+        element: <PrivateRoute>
+          <AddMovie></AddMovie>
+        </PrivateRoute>
+      },
+      {
+        path: "/dashboard/movies/my-collection",
+        element: <PrivateRoute>
+          <MyCollection></MyCollection>
+        </PrivateRoute>
+      },
+
+      {
+        path: "/dashboard/movies/watchlist",
+        element: <PrivateRoute>
+          <Watchlist></Watchlist>
+        </PrivateRoute>
+      }
+    ],
+    errorElement: <ErrorPage></ErrorPage>
+  },
+
 ]);
 
 export default Router;
